@@ -1,4 +1,4 @@
-package route
+package osx
 
 import (
 	"fmt"
@@ -11,15 +11,12 @@ import (
 
 	"github.com/starudream/go-lib/log"
 
-	. "github.com/starudream/github-asset-mirror/config"
 	"github.com/starudream/github-asset-mirror/internal/unitx"
 )
 
 var cli = &http.Client{Timeout: time.Minute}
 
-func downloadFile(url string, filepath string) ([]byte, error) {
-	url = proxyURL(url)
-
+func SaveFile(url string, filepath string) ([]byte, error) {
 	resp, err := cli.Get(url)
 	if err != nil {
 		return nil, err
@@ -45,8 +42,8 @@ func downloadFile(url string, filepath string) ([]byte, error) {
 	return bs, os.WriteFile(filepath, bs, 0644)
 }
 
-func proxyURL(url string) string {
-	switch C.Proxy {
+func ProxyURL(proxy, url string) string {
+	switch proxy {
 	case "ghproxy":
 		return "https://ghproxy.com/" + url
 	case "fastgit":
@@ -55,7 +52,7 @@ func proxyURL(url string) string {
 	return url
 }
 
-func existFile(name string) bool {
+func ExistFile(name string) bool {
 	fi, err := os.Stat(name)
 	return err == nil && !fi.IsDir()
 }

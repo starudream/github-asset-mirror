@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/google/go-github/v49 v49.1.0
-	github.com/starudream/go-lib v1.7.1
+	github.com/starudream/go-lib v1.7.2
 )
 
 require (

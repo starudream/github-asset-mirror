@@ -11,6 +11,8 @@ import (
 
 	. "github.com/starudream/github-asset-mirror/config"
 	"github.com/starudream/github-asset-mirror/github"
+
+	"github.com/starudream/github-asset-mirror/internal/osx"
 )
 
 func mirror(c *router.Context) {
@@ -60,8 +62,8 @@ func mirror(c *router.Context) {
 	filename := path.Base(url)
 	filepath := fp.Join(C.Storage, filename)
 
-	if !existFile(filepath) {
-		_, err = downloadFile(url, filepath)
+	if !osx.ExistFile(filepath) {
+		_, err = osx.SaveFile(osx.ProxyURL(C.Proxy, url), filepath)
 		if err != nil {
 			log.Ctx(c).Error().Msgf("download file failed: %v", err)
 			c.JSON(http.StatusInternalServerError, router.ErrInternal)
