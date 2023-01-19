@@ -8,7 +8,19 @@
 ## Usage
 
 ```text
-
+Usage of ./bin/app:
+  -addr string
+    	http server address (default "0.0.0.0:80")
+  -name string
+    	github repo (default "{{.repo}}-{{.os}}-{{.arch}}-{{.platform}}-{{.ver}}.zip")
+  -owner string
+    	github owner
+  -proxy string
+    	available proxy: ghproxy fastgit
+  -repo string
+    	github repo
+  -storage string
+    	file storage path (default "/storage")
 ```
 
 ## Docker
@@ -22,7 +34,13 @@ docker pull starudream/github-asset-mirror
 ```
 
 ```bash
-docker run -d --name github-asset-mirror --restart always -p 80:80 starudream/github-asset-mirror
+docker run -d --name github-asset-mirror --restart always -p 80:80 -v $(pwd)/storage:/storage starudream/github-asset-mirror
+```
+
+## Example
+
+```shell
+./app -owner starudream -repo secret-tunnel -proxy ghproxy
 ```
 
 ## License
