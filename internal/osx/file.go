@@ -26,7 +26,7 @@ func SaveFile(url string, filepath string) ([]byte, error) {
 	if sl := resp.Header.Get("Content-Length"); sl != "" {
 		il, ce := strconv.Atoi(sl)
 		if ce == nil {
-			log.Info().Msgf("download file size: %s", unitx.HumanSize(float64(il)))
+			log.Info().Msgf("download file (%s) size: %s", resp.Header.Get("Content-Disposition"), unitx.HumanSize(float64(il)))
 		}
 	}
 
