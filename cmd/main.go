@@ -26,6 +26,10 @@ func init() {
 
 	flag.Parse()
 
+	if C.Owner == "" || C.Repo == "" {
+		log.Fatal().Msg("owner and repo must be set")
+	}
+
 	route.Register()
 
 	server = &http.Server{Addr: C.Addr, Handler: router.R()}
