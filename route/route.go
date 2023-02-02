@@ -10,15 +10,16 @@ import (
 )
 
 func Register() {
-	router.Handle(http.MethodGet, "/", index)
-	router.Handle(http.MethodPost, "/", index)
+	router.Handle(http.MethodGet, "/_health", health)
 
+	router.Handle(http.MethodGet, "/", mirror)
 	router.Handle(http.MethodGet, "/:ver", mirror)
+	router.Handle(http.MethodGet, "/:ver/:os", mirror)
 	router.Handle(http.MethodGet, "/:ver/:os/:arch", mirror)
 
 	_, _ = FormatURL(nil)
 }
 
-func index(c *router.Context) {
-	c.JSONOK(router.M{"version": constant.VERSION, "bidtime": constant.BIDTIME})
+func health(c *router.Context) {
+	c.OK(map[string]any{"version": constant.VERSION, "bidtime": constant.BIDTIME})
 }

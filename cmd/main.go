@@ -32,7 +32,7 @@ func init() {
 
 	route.Register()
 
-	server = &http.Server{Addr: C.Addr, Handler: router.R()}
+	server = &http.Server{Addr: C.Addr, Handler: router.Handler()}
 }
 
 func main() {

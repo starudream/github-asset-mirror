@@ -8,10 +8,14 @@ import (
 )
 
 func TestMirror(t *testing.T) {
-	router.T(t,
-		router.TCase{
-			Method: http.MethodGet,
-			Path:   "/latest",
+	router.TE(t,
+		router.TC{
+			Method:  http.MethodGet,
+			Pattern: "/latest",
+		},
+		router.TC{
+			Method:  http.MethodGet,
+			Pattern: "/latest/windows/amd64",
 		},
 	)
 }
