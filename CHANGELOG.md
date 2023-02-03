@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/starudream/github-asset-mirror/compare/v1.0.1...v1.0.2) (2023-02-03)
+
+
+### Performance Improvements
+
+* perfect ([d23d92e](https://github.com/starudream/github-asset-mirror/commit/d23d92e2aa6cea87e82084ac727b3332b87bc207))
+
 ## [1.0.1](https://github.com/starudream/github-asset-mirror/compare/v1.0.0...v1.0.1) (2023-02-02)
 
 
